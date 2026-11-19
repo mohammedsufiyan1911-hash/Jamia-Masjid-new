@@ -1,1 +1,445 @@
 
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jamia Masjid, Madiwala, Bengaluru</title>
+<meta name="description" content="Jamia Masjid, Madiwala, Bengaluru. Namaz timings, sehri and iftar timings, facilities, donation and contact details.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#0b3d2e; --green2:#14573f; --gold:#c9a24b; --gold2:#e6c878;
+  --cream:#faf6ec; --ink:#1b2a24; --muted:#5d6b64; --card:#ffffff; --line:#e7dfc9;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:700;line-height:1.15}
+h2{font-size:2rem;color:var(--green);text-align:center}
+.sub{text-align:center;color:var(--muted);margin:6px 0 28px}
+.orn{display:block;width:70px;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:10px auto 8px}
+section{padding:56px 0}
+
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:rgba(11,61,46,.96);backdrop-filter:blur(6px)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px}
+nav .brand{font-family:'Cormorant Garamond',serif;color:var(--gold2);font-weight:700;font-size:1.2rem;white-space:nowrap;text-decoration:none}
+nav .links{display:flex;gap:16px;overflow-x:auto;scrollbar-width:none}
+nav .links::-webkit-scrollbar{display:none}
+nav .links a{color:#eef3ef;text-decoration:none;font-size:.85rem;white-space:nowrap;opacity:.9}
+nav .links a:hover{color:var(--gold2)}
+
+/* hero */
+.hero{position:relative;color:#fff;background:linear-gradient(160deg,var(--green) 0%,#0f4d39 55%,#07261c 100%);overflow:hidden;text-align:center;padding:64px 0 0}
+.hero:before{content:"";position:absolute;inset:0;opacity:.07;
+  background-image:radial-gradient(circle at 20px 20px,#fff 2px,transparent 2.5px);background-size:40px 40px}
+.hero .wrap{position:relative}
+.bismillah{font-family:Amiri,serif;font-size:1.8rem;color:var(--gold2);margin-bottom:10px}
+.hero h1{font-size:clamp(2.3rem,7vw,4rem);letter-spacing:.5px}
+.hero p.loc{margin-top:8px;opacity:.9}
+.hijri-pill{display:inline-block;margin-top:18px;padding:8px 18px;border:1px solid var(--gold);border-radius:999px;color:var(--gold2);font-size:.95rem}
+.photo{margin:36px auto 0;max-width:860px;border-radius:18px 18px 0 0;overflow:hidden;border:4px solid var(--gold);border-bottom:0;background:#0d3a2c;min-height:220px;display:flex;align-items:center;justify-content:center}
+.photo img{display:block;width:100%;height:auto;max-height:480px;object-fit:cover}
+.photo .ph{padding:60px 20px;color:var(--gold2);font-family:'Cormorant Garamond',serif;font-size:1.4rem}
+.photo .ph small{display:block;font-family:Inter;font-size:.8rem;color:#cfe0d6;margin-top:6px}
+
+/* cards */
+.grid{display:grid;gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 4px 16px rgba(11,61,46,.05)}
+
+/* prayer */
+.nextbox{background:var(--green);color:#fff;border-radius:16px;padding:20px;text-align:center;margin-bottom:18px}
+.nextbox .lbl{font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold2)}
+.nextbox .nm{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700}
+.nextbox .cd{font-size:1.1rem;opacity:.9}
+table{width:100%;border-collapse:collapse}
+th,td{padding:14px 10px;text-align:center;border-bottom:1px solid var(--line)}
+th{font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-weight:600}
+td.n{text-align:left;font-weight:600;color:var(--green)}
+td.j{font-weight:600}
+tr.active td{background:#fbf3d9}
+tr:last-child td{border-bottom:0}
+.note{font-size:.82rem;color:var(--muted);margin-top:12px;text-align:center}
+.jumuah{margin-top:16px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.chip{background:#fff;border:1px solid var(--gold);color:var(--green);border-radius:999px;padding:8px 16px;font-size:.9rem;font-weight:500}
+
+/* ramadan */
+.ram{background:linear-gradient(160deg,var(--green),#07261c);color:#fff}
+.ram h2{color:var(--gold2)}
+.ram .sub{color:#cfe0d6}
+.two{grid-template-columns:1fr 1fr}
+.big{background:rgba(255,255,255,.07);border:1px solid rgba(230,200,120,.4);border-radius:16px;padding:24px;text-align:center}
+.big .t{font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold2)}
+.big .v{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:700;margin:4px 0}
+.big .d{font-size:.85rem;opacity:.8}
+.ram table th{color:#cfe0d6}
+.ram td{border-color:rgba(255,255,255,.15)}
+.ram td.n{color:var(--gold2)}
+.ramnote{margin-top:16px;text-align:center;font-size:.9rem;color:#dbe8e0}
+
+/* months */
+.months{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.m{position:relative}
+.m .num{position:absolute;top:12px;right:16px;font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--gold);opacity:.5}
+.m h3{font-size:1.35rem;color:var(--green)}
+.m .ar{font-family:Amiri,serif;color:var(--gold);font-size:1.15rem}
+.m p{font-size:.88rem;color:var(--muted);margin-top:8px}
+.m.cur{border:2px solid var(--gold);background:#fffaf0}
+.m.cur:after{content:"Current month";position:absolute;bottom:10px;right:14px;font-size:.7rem;background:var(--gold);color:#fff;border-radius:999px;padding:2px 10px}
+
+/* facilities */
+.fac{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+.f{text-align:center}
+.f .ic{font-size:2rem;margin-bottom:6px}
+.f h3{font-size:1.25rem;color:var(--green)}
+.f p{font-size:.85rem;color:var(--muted)}
+
+/* donate */
+.donate{background:#f2ead2}
+.dgrid{grid-template-columns:1fr 1fr}
+.row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line);font-size:.95rem}
+.row:last-child{border:0}
+.row b{color:var(--green)}
+.qr{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px}
+.qr .box{width:170px;height:170px;border:2px dashed var(--gold);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.85rem;padding:10px}
+.qr img{width:170px;height:170px;border-radius:12px;display:block}
+.btn{display:inline-block;background:var(--green);color:#fff;text-decoration:none;padding:12px 22px;border-radius:999px;font-weight:600;font-size:.95rem;border:0;cursor:pointer}
+.btn.gold{background:var(--gold);color:#1b1b1b}
+.btn:hover{filter:brightness(1.1)}
+.verse{text-align:center;margin-top:24px;font-style:italic;color:var(--green2)}
+
+/* contact */
+.cgrid{grid-template-columns:1fr 1.2fr}
+.ci{display:flex;gap:12px;padding:10px 0;align-items:flex-start}
+.ci .i{font-size:1.3rem}
+.ci b{display:block;color:var(--green)}
+iframe{width:100%;height:100%;min-height:320px;border:0;border-radius:12px}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+
+footer{background:#07261c;color:#cfe0d6;text-align:center;padding:28px 16px;font-size:.88rem}
+footer .ar{font-family:Amiri,serif;color:var(--gold2);font-size:1.3rem}
+
+@media(max-width:720px){
+  section{padding:42px 0}
+  .two,.dgrid,.cgrid{grid-template-columns:1fr}
+  h2{font-size:1.75rem}
+  th,td{padding:12px 4px;font-size:.9rem}
+  .big .v{font-size:2.2rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">Jamia Masjid</a>
+    <div class="links">
+      <a href="#prayer">Namaz</a>
+      <a href="#ramadan">Sehri &amp; Iftar</a>
+      <a href="#months">Islamic Months</a>
+      <a href="#facilities">Facilities</a>
+      <a href="#donate">Donate</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="bismillah">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+    <h1 id="mName">Jamia Masjid</h1>
+    <p class="loc" id="mLoc">Madiwala, Bengaluru, Karnataka</p>
+    <div class="hijri-pill" id="hijriPill">Loading date…</div>
+    <div class="photo" id="photoBox">
+      <img src="masjid.jpg" alt="Jamia Masjid, Madiwala" id="mPhoto"
+           onerror="this.remove();document.getElementById('photoBox').insertAdjacentHTML('beforeend','<div class=ph>Masjid photo<small>Add your photo as masjid.jpg next to this file</small></div>')">
+    </div>
+  </div>
+</header>
+
+<!-- NAMAZ TIMINGS -->
+<section id="prayer">
+  <div class="wrap">
+    <h2>Namaz Timings</h2><span class="orn"></span>
+    <p class="sub" id="todayLine">Today's prayer times</p>
+
+    <div class="nextbox">
+      <div class="lbl">Next Jamaat</div>
+      <div class="nm" id="nextName">—</div>
+      <div class="cd" id="nextCd"></div>
+    </div>
+
+    <div class="card">
+      <table>
+        <thead><tr><th style="text-align:left">Prayer</th><th>Azaan / Begins</th><th>Jamaat</th></tr></thead>
+        <tbody id="prayerBody"></tbody>
+      </table>
+      <p class="note">Jamaat times are set by the masjid committee and may change with the season. Azaan times are calculated for Bengaluru.</p>
+    </div>
+    <div class="jumuah" id="extras"></div>
+  </div>
+</section>
+
+<!-- SEHRI IFTAR -->
+<section class="ram" id="ramadan">
+  <div class="wrap">
+    <h2>Sehri &amp; Iftar Timings</h2><span class="orn"></span>
+    <p class="sub">For fasting (Ramadan and voluntary fasts). Times for Bengaluru.</p>
+    <div class="grid two">
+      <div class="big"><div class="t">Sehri ends</div><div class="v" id="sehri">—</div><div class="d">Stop eating before Fajr</div></div>
+      <div class="big"><div class="t">Iftar</div><div class="v" id="iftar">—</div><div class="d">At Maghrib (sunset)</div></div>
+    </div>
+    <div class="card" id="ramTableCard" style="display:none;margin-top:20px;background:rgba(255,255,255,.06);border-color:rgba(230,200,120,.3)">
+      <table>
+        <thead><tr><th>Ramadan Day</th><th>Date</th><th>Sehri</th><th>Iftar</th></tr></thead>
+        <tbody id="ramBody"></tbody>
+      </table>
+    </div>
+    <p class="ramnote" id="ramNote"></p>
+  </div>
+</section>
+
+<!-- ISLAMIC MONTHS -->
+<section id="months">
+  <div class="wrap">
+    <h2>Islamic Months</h2><span class="orn"></span>
+    <p class="sub">The Hijri calendar and its important days. Dates depend on moon sighting and may differ by a day.</p>
+    <div class="grid months" id="monthGrid"></div>
+  </div>
+</section>
+
+<!-- FACILITIES -->
+<section id="facilities" style="background:#fff">
+  <div class="wrap">
+    <h2>Facilities Available</h2><span class="orn"></span>
+    <p class="sub">Services for the community</p>
+    <div class="grid fac" id="facGrid"></div>
+  </div>
+</section>
+
+<!-- DONATE -->
+<section class="donate" id="donate">
+  <div class="wrap">
+    <h2>Support the Masjid</h2><span class="orn"></span>
+    <p class="sub">Your donation helps with masjid upkeep, utilities, imam and staff, and community welfare.</p>
+    <div class="grid dgrid">
+      <div class="card">
+        <h3 style="color:var(--green);margin-bottom:8px">Bank Details</h3>
+        <div class="row"><span>Account name</span><b id="bAcc">Jamia Masjid Madiwala</b></div>
+        <div class="row"><span>Bank</span><b id="bBank">Your Bank Name</b></div>
+        <div class="row"><span>Account number</span><b id="bNo">0000 0000 0000</b></div>
+        <div class="row"><span>IFSC</span><b id="bIfsc">XXXX0000000</b></div>
+        <div class="row"><span>UPI ID</span><b id="bUpi">jamiamasjid@upi</b></div>
+        <div class="btns"><button class="btn gold" onclick="copyUpi()">Copy UPI ID</button></div>
+      </div>
+      <div class="card qr" id="qrCard">
+        <div id="qrHolder"></div>
+        <b style="color:var(--green)">Scan to donate via UPI</b>
+        <span style="font-size:.85rem;color:var(--muted)">Zakat, Sadaqah and general donations accepted</span>
+      </div>
+    </div>
+    <p class="verse">"The example of those who spend their wealth in the way of Allah is like a seed that grows seven ears." (Quran 2:261)</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <h2>Contact &amp; Location</h2><span class="orn"></span>
+    <p class="sub">We'd love to hear from you</p>
+    <div class="grid cgrid">
+      <div class="card">
+        <div class="ci"><span class="i">📍</span><div><b>Address</b><span id="cAddr">Jamia Masjid, Madiwala, Bengaluru, Karnataka 560068</span></div></div>
+        <div class="ci"><span class="i">📞</span><div><b>Phone</b><a id="cPhone" href="#">+91 00000 00000</a></div></div>
+        <div class="ci"><span class="i">💬</span><div><b>WhatsApp</b><a id="cWa" href="#">Message us</a></div></div>
+        <div class="ci"><span class="i">✉️</span><div><b>Email</b><a id="cMail" href="#">info@example.com</a></div></div>
+        <div class="ci"><span class="i">👤</span><div><b>Imam / Committee</b><span id="cImam">Imam name, Secretary name</span></div></div>
+        <div class="btns">
+          <a class="btn" id="dirBtn" target="_blank" rel="noopener" href="#">Get Directions</a>
+          <a class="btn gold" id="callBtn" href="#">Call Now</a>
+        </div>
+      </div>
+      <div class="card" style="padding:8px">
+        <iframe id="mapFrame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ar">جَزَاكُمُ ٱللَّٰهُ خَيْرًا</div>
+  <p>© <span id="yr"></span> Jamia Masjid, Madiwala, Bengaluru. All rights reserved.</p>
+</footer>
+
+<script>
+/* ============================================================
+   EDIT THIS SECTION: everything on the site comes from here
+   ============================================================ */
+const CONFIG = {
+  name: "Jamia Masjid",
+  location: "Madiwala, Bengaluru, Karnataka",
+  address: "Jamia Masjid, Madiwala, Bengaluru, Karnataka 560068",
+  mapQuery: "Jamia Masjid Madiwala Bangalore",
+
+  // Jamaat (congregation) times: change these as per your masjid
+  jamaat: { Fajr:"5:15 AM", Dhuhr:"1:15 PM", Asr:"4:30 PM", Maghrib:"5 min after Azaan", Isha:"8:00 PM" },
+  // For countdown, Maghrib jamaat is taken as Azaan + this many minutes
+  maghribGapMin: 5,
+  extras: ["Jumu'ah Khutba: 1:15 PM", "Jumu'ah Namaz: 1:30 PM", "Eid Namaz: announced before Eid"],
+
+  phone: "+910000000000",       phoneShow: "+91 00000 00000",
+  whatsapp: "910000000000",
+  email: "info@example.com",
+  imam: "Imam name, Secretary name",
+
+  upi: "jamiamasjid@upi",
+  upiName: "Jamia Masjid Madiwala",
+  bank: { name:"Jamia Masjid Madiwala", bank:"Your Bank Name", no:"0000 0000 0000", ifsc:"XXXX0000000" },
+  // Optional: put your own UPI QR image file name here, e.g. "qr.png". Leave "" to auto-generate.
+  qrImage: "",
+
+  facilities: [
+    ["🕌","Five Daily Prayers","With jamaat, men's section"],
+    ["👩","Ladies Section","Separate prayer area for women"],
+    ["🚿","Wudu Khana","Clean wudu and washroom facilities"],
+    ["📖","Quran Classes","For children and adults"],
+    ["🎓","Madrasa","Islamic education for kids"],
+    ["🕊️","Janazah Services","Ghusl and janazah support"],
+    ["❄️","Jumu'ah Khutba","Weekly Friday sermon"],
+    ["🍲","Iftar &amp; Community Meals","During Ramadan"],
+    ["🅿️","Parking","Space for two and four wheelers"],
+    ["🤝","Zakat &amp; Welfare","Support for those in need"]
+  ],
+
+  // Optional Ramadan timetable. Add rows when the masjid publishes it, e.g.:
+  // {day:1, date:"09 Feb 2027", sehri:"5:20 AM", iftar:"6:38 PM"}
+  ramadanTable: []
+};
+/* ============================================================ */
+
+const MONTHS = [
+  ["Muharram","مُحَرَّم","Islamic New Year. Day of Ashura on the 10th, when fasting on the 9th and 10th is recommended."],
+  ["Safar","صَفَر","Second month. Observed with prayer and good deeds; no special obligations."],
+  ["Rabi ul Awwal","رَبِيع ٱلْأَوَّل","Month of the Prophet's ﷺ birth (12th). A time for Seerah, salawat and gatherings."],
+  ["Rabi ul Akhir","رَبِيع ٱلْآخِر","Fourth month. Also remembered for Gyarvi Sharif (11th) in many communities."],
+  ["Jumada al-Awwal","جُمَادَىٰ ٱلْأُولَىٰ","Fifth month. A regular month for worship and voluntary fasts."],
+  ["Jumada al-Akhirah","جُمَادَىٰ ٱلْآخِرَة","Sixth month. Continue regular fasts of the white days (13, 14, 15)."],
+  ["Rajab","رَجَب","One of the four sacred months. Isra and Mi'raj is remembered on the 27th."],
+  ["Sha'ban","شَعْبَان","Month before Ramadan. Shab-e-Barat on the 15th night; fasting is encouraged."],
+  ["Ramadan","رَمَضَان","Month of fasting, Quran and Taraweeh. Laylatul Qadr in the last ten nights."],
+  ["Shawwal","شَوَّال","Eid ul Fitr on the 1st. Six voluntary fasts of Shawwal are recommended."],
+  ["Dhul Qa'dah","ذُو ٱلْقَعْدَة","Sacred month and the start of the Hajj season."],
+  ["Dhul Hijjah","ذُو ٱلْحِجَّة","Hajj, Day of Arafah (9th) and Eid ul Adha (10th). First ten days are highly blessed."]
+];
+
+const $ = id => document.getElementById(id);
+const pad = n => String(n).padStart(2,"0");
+
+/* header + static content */
+document.title = CONFIG.name + ", " + CONFIG.location.split(",")[0];
+$("mName").textContent = CONFIG.name + ", Madiwala";
+$("mLoc").textContent = CONFIG.location;
+$("yr").textContent = new Date().getFullYear();
+$("cAddr").textContent = CONFIG.address;
+$("cPhone").textContent = CONFIG.phoneShow; $("cPhone").href = "tel:" + CONFIG.phone;
+$("callBtn").href = "tel:" + CONFIG.phone;
+$("cWa").href = "https://wa.me/" + CONFIG.whatsapp;
+$("cMail").textContent = CONFIG.email; $("cMail").href = "mailto:" + CONFIG.email;
+$("cImam").textContent = CONFIG.imam;
+const q = encodeURIComponent(CONFIG.mapQuery);
+$("dirBtn").href = "https://www.google.com/maps/dir/?api=1&destination=" + q;
+$("mapFrame").src = "https://maps.google.com/maps?q=" + q + "&output=embed";
+
+$("bAcc").textContent = CONFIG.bank.name; $("bBank").textContent = CONFIG.bank.bank;
+$("bNo").textContent = CONFIG.bank.no; $("bIfsc").textContent = CONFIG.bank.ifsc;
+$("bUpi").textContent = CONFIG.upi;
+function copyUpi(){
+  const done = () => alert("UPI ID copied: " + CONFIG.upi);
+  if(navigator.clipboard){ navigator.clipboard.writeText(CONFIG.upi).then(done,done); } else { done(); }
+}
+(function qr(){
+  const h = $("qrHolder");
+  if(CONFIG.qrImage){ h.innerHTML = '<img src="'+CONFIG.qrImage+'" alt="UPI QR">'; return; }
+  const upiUrl = "upi://pay?pa=" + encodeURIComponent(CONFIG.upi) + "&pn=" + encodeURIComponent(CONFIG.upiName);
+  const src = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=8&data=" + encodeURIComponent(upiUrl);
+  h.innerHTML = '<img src="'+src+'" alt="UPI QR" onerror="this.parentNode.innerHTML=\'<div class=box>Add your UPI QR as qr.png</div>\'">';
+})();
+
+$("facGrid").innerHTML = CONFIG.facilities.map(f =>
+  '<div class="card f"><div class="ic">'+f[0]+'</div><h3>'+f[1]+'</h3><p>'+f[2]+'</p></div>').join("");
+$("extras").innerHTML = CONFIG.extras.map(e => '<span class="chip">'+e+'</span>').join("");
+
+/* Hijri date + months */
+function hijriInfo(d){
+  try{
+    const f = new Intl.DateTimeFormat("en-u-ca-islamic-umalqura", {day:"numeric", month:"numeric", year:"numeric"});
+    const p = Object.fromEntries(f.formatToParts(d).map(x => [x.type, x.value]));
+    return {day:+p.day, month:+p.month, year:parseInt(p.year)};
+  }catch(e){ return null; }
+}
+const hj = hijriInfo(new Date());
+const greg = new Date().toLocaleDateString("en-IN",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+$("hijriPill").textContent = hj ? (hj.day + " " + MONTHS[hj.month-1][0] + " " + hj.year + " AH  •  " + greg) : greg;
+$("monthGrid").innerHTML = MONTHS.map((m,i) =>
+  '<div class="card m'+(hj && hj.month===i+1?' cur':'')+'"><span class="num">'+(i+1)+'</span><h3>'+m[0]+'</h3><div class="ar">'+m[1]+'</div><p>'+m[2]+'</p></div>').join("");
+
+/* Prayer times (live from Aladhan, Bengaluru, Hanafi Asr) */
+const ORDER = ["Fajr","Dhuhr","Asr","Maghrib","Isha"];
+const FALLBACK = {Fajr:"05:12",Dhuhr:"12:20",Asr:"15:45",Maghrib:"17:55",Isha:"19:10",Sunrise:"06:20"};
+let T = null;
+
+function to12(t){ const [h,m]=t.split(":").map(Number); return ((h%12)||12)+":"+pad(m)+" "+(h>=12?"PM":"AM"); }
+function toDate(t, add=0){ const [h,m]=t.split(":").map(Number); const d=new Date(); d.setHours(h,m+add,0,0); return d; }
+function jamaatDate(name){
+  if(name==="Maghrib") return toDate(T.Maghrib, CONFIG.maghribGapMin);
+  const m = CONFIG.jamaat[name].match(/(\d+):(\d+)\s*(AM|PM)/i);
+  if(!m) return toDate(T[name]);
+  let h=+m[1]; if(/PM/i.test(m[3]) && h<12) h+=12; if(/AM/i.test(m[3]) && h===12) h=0;
+  const d=new Date(); d.setHours(h,+m[2],0,0); return d;
+}
+
+function render(){
+  $("prayerBody").innerHTML = ORDER.map(n =>
+    '<tr data-n="'+n+'"><td class="n">'+n+'</td><td>'+to12(T[n])+'</td><td class="j">'+CONFIG.jamaat[n]+'</td></tr>').join("");
+  $("sehri").textContent = to12(T.Fajr);
+  $("iftar").textContent = to12(T.Maghrib);
+  $("todayLine").textContent = "Today, " + greg;
+  tick();
+}
+
+function tick(){
+  if(!T) return;
+  const now = new Date();
+  let next = null;
+  for(const n of ORDER){ const d = jamaatDate(n); if(d > now){ next = {n,d}; break; } }
+  let label;
+  if(!next){ const d=jamaatDate("Fajr"); d.setDate(d.getDate()+1); next={n:"Fajr",d}; label="Fajr (tomorrow)"; }
+  $("nextName").textContent = label || next.n;
+  const diff = Math.max(0, next.d - now);
+  const h = Math.floor(diff/3600000), m = Math.floor(diff%3600000/60000), s = Math.floor(diff%60000/1000);
+  $("nextCd").textContent = "in " + (h? h+"h ":"") + m + "m " + pad(s) + "s";
+  document.querySelectorAll("#prayerBody tr").forEach(r => r.classList.toggle("active", r.dataset.n===next.n && label===undefined));
+}
+setInterval(tick, 1000);
+
+fetch("https://api.aladhan.com/v1/timingsByCity?city=Bengaluru&country=India&method=1&school=1")
+  .then(r => r.json())
+  .then(j => { const t=j.data.timings; T={}; Object.keys(FALLBACK).forEach(k => T[k]=t[k].slice(0,5)); render(); })
+  .catch(() => { T = FALLBACK; render(); $("todayLine").textContent += " (approximate, please check masjid notice board)"; });
+
+/* Ramadan section */
+if(CONFIG.ramadanTable.length){
+  $("ramTableCard").style.display="block";
+  $("ramBody").innerHTML = CONFIG.ramadanTable.map(r =>
+    '<tr><td class="n">'+r.day+'</td><td>'+r.date+'</td><td>'+r.sehri+'</td><td>'+r.iftar+'</td></tr>').join("");
+}
+$("ramNote").textContent = (hj && hj.month===9)
+  ? "Ramadan Mubarak! Taraweeh follows Isha prayer."
+  : "The full Ramadan timetable will be published here once the moon is sighted. Today's times above are shown for reference.";
+</script>
+</body>
+</html>
