@@ -149,6 +149,122 @@ footer .ar{font-family:Amiri,serif;color:var(--gold2);font-size:1.3rem}
 #intro.lit .tap{opacity:0;animation:none;transition:opacity .3s}
 @keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
 @media(prefers-reduced-motion:reduce){#intro.lit .light{animation-duration:.4s}}
+
+/* =====================================================
+   iOS-style GLASS THEME
+   ===================================================== */
+:root{
+  --green:#f2e6c4;            /* headings / accents now light on dark glass */
+  --green2:#cfe6da;
+  --ink:#f5f8f4;
+  --muted:rgba(245,248,244,.68);
+  --line:rgba(255,255,255,.14);
+  --glass:linear-gradient(145deg,rgba(255,255,255,.17),rgba(255,255,255,.06));
+  --glass-border:rgba(255,255,255,.24);
+  --glass-shadow:0 10px 36px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.38),inset 0 -1px 0 rgba(255,255,255,.05);
+}
+html{background:#04170f}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",Inter,system-ui,sans-serif;
+  background:transparent;color:var(--ink);position:relative;
+  -webkit-font-smoothing:antialiased;
+}
+/* soft glowing colour orbs behind the glass */
+body::before{
+  content:"";position:fixed;inset:-20%;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(40vmax 40vmax at 12% 8%,rgba(226,184,84,.50),transparent 62%),
+    radial-gradient(46vmax 46vmax at 92% 22%,rgba(24,168,126,.55),transparent 62%),
+    radial-gradient(50vmax 50vmax at 18% 70%,rgba(12,120,96,.65),transparent 62%),
+    radial-gradient(40vmax 40vmax at 88% 88%,rgba(230,200,120,.34),transparent 62%),
+    radial-gradient(34vmax 34vmax at 55% 45%,rgba(40,110,150,.30),transparent 62%),
+    #04170f;
+  animation:drift 26s ease-in-out infinite alternate;
+}
+@keyframes drift{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(-3%,3%,0) scale(1.08)}}
+
+section,.hero,.ram,.donate,#facilities{background:transparent !important}
+.hero:before{opacity:.04}
+h2{background:linear-gradient(180deg,#ffffff 20%,#e9cd83 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;letter-spacing:.3px}
+.hero h1{background:linear-gradient(180deg,#fff 25%,#ebd08a 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none}
+
+/* glass surfaces */
+.card,.nextbox,.big,.chip,.hijri-pill,.photo,.qr .box{
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  -webkit-backdrop-filter:blur(26px) saturate(180%);
+  backdrop-filter:blur(26px) saturate(180%);
+  box-shadow:var(--glass-shadow);
+}
+.card{border-radius:26px;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.card:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.45)}
+.nextbox{border-radius:26px;color:#fff}
+.nextbox .nm{background:linear-gradient(180deg,#fff,#ecd28e);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.big{border-radius:26px;color:#fff}
+.big .v{background:linear-gradient(180deg,#fff,#ebd08a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hijri-pill{color:#f7e7b4;border-color:rgba(255,255,255,.3);padding:9px 20px}
+.photo{border-radius:30px 30px 0 0;border-bottom:0;padding:8px 8px 0;background:var(--glass)}
+.photo img{border-radius:22px 22px 0 0}
+.photo .ph{color:#f2e6c4}
+.chip{color:#f7e7b4;padding:9px 18px}
+
+/* floating glass navigation */
+nav{background:transparent;padding:10px 12px 0;-webkit-backdrop-filter:none;backdrop-filter:none;top:0}
+nav .wrap{height:54px;border-radius:999px;padding:0 22px;background:linear-gradient(145deg,rgba(255,255,255,.18),rgba(255,255,255,.07));
+  border:1px solid var(--glass-border);-webkit-backdrop-filter:blur(26px) saturate(180%);backdrop-filter:blur(26px) saturate(180%);
+  box-shadow:var(--glass-shadow)}
+nav .brand{color:#f7e7b4}
+nav .links a{color:rgba(255,255,255,.9);padding:6px 10px;border-radius:999px;transition:background .25s}
+nav .links a:hover{background:rgba(255,255,255,.16);color:#fff}
+
+/* tables */
+table{color:var(--ink)}
+th{color:var(--muted)}
+td,th{border-color:rgba(255,255,255,.12)}
+td.n{color:#f2e6c4}
+tr.active td{background:rgba(236,208,130,.2)}
+tr.active td:first-child{border-radius:14px 0 0 14px}
+tr.active td:last-child{border-radius:0 14px 14px 0}
+.ram table th{color:var(--muted)}
+.ram td{border-color:rgba(255,255,255,.12)}
+.ram td.n{color:#f2e6c4}
+#ramTableCard{background:var(--glass) !important;border-color:var(--glass-border) !important}
+
+/* months / facilities / contact */
+.m.cur{background:linear-gradient(145deg,rgba(236,208,130,.30),rgba(236,208,130,.08));border:1px solid rgba(240,214,140,.7)}
+.m .num{color:#f2e6c4;opacity:.35}
+.m .ar{color:#ecd28e}
+.f .ic{filter:drop-shadow(0 4px 10px rgba(0,0,0,.3))}
+.row{border-bottom:1px dashed rgba(255,255,255,.18)}
+.verse{color:#cfe6da}
+.ci a{color:#f7e7b4;text-decoration:none}
+.qr .box{color:var(--muted);border:1px dashed rgba(255,255,255,.35)}
+.qr img{background:#fff;padding:8px;border-radius:18px}
+iframe{border-radius:20px}
+
+/* glass buttons */
+.btn{background:linear-gradient(145deg,rgba(255,255,255,.22),rgba(255,255,255,.08));color:#fff;border:1px solid var(--glass-border);
+  -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 6px 18px rgba(0,0,0,.25);
+  transition:transform .2s,filter .2s}
+.btn:hover{filter:brightness(1.15);transform:translateY(-2px)}
+.btn:active{transform:scale(.97)}
+.btn.gold{background:linear-gradient(145deg,#f3dc9a,#c9a24b);color:#1b1608;border-color:rgba(255,255,255,.5);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 8px 22px rgba(201,162,75,.35)}
+
+footer{background:linear-gradient(145deg,rgba(255,255,255,.10),rgba(255,255,255,.03));border-top:1px solid var(--glass-border);
+  -webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);color:var(--muted)}
+
+/* gentle reveal on scroll */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+@media(max-width:720px){
+  .card,.nextbox,.big{border-radius:22px}
+  nav .wrap{padding:0 16px}
+}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .card,.nextbox,.big,.chip,.hijri-pill,.photo,nav .wrap{background:rgba(20,70,56,.85)}
+}
 </style>
 </head>
 <body>
@@ -473,6 +589,13 @@ if(CONFIG.ramadanTable.length){
 $("ramNote").textContent = (hj && hj.month===9)
   ? "Ramadan Mubarak! Taraweeh follows Isha prayer."
   : "The full Ramadan timetable will be published here once the moon is sighted. Today's times above are shown for reference.";
+
+/* Scroll reveal (safe: only hides items when IntersectionObserver exists) */
+(function(){
+  if(!("IntersectionObserver" in window)) return;
+  const io = new IntersectionObserver((es) => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }), {threshold:.08});
+  document.querySelectorAll(".card,.big,.nextbox").forEach((el,i) => { el.classList.add("rv"); el.style.transitionDelay = (i%4)*70 + "ms"; io.observe(el); });
+})();
 
 /* Dark intro: tap to light up, then enter */
 (function(){
