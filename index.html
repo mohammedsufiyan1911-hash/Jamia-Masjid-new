@@ -270,7 +270,7 @@ footer .ar{color:#1f63d6}
     <div class="links">
       <a href="#prayer">Namaz</a>
       <a href="#ramadan">Sehri &amp; Iftar</a>
-      <a href="#months">Islamic Months</a>
+      <a href="#months">Islamic Month</a>
       <a href="#facilities">Facilities</a>
       <a href="#donate">Donate</a>
       <a href="#contact">Contact</a>
@@ -305,10 +305,10 @@ footer .ar{color:#1f63d6}
 
     <div class="card">
       <table>
-        <thead><tr><th style="text-align:left">Prayer</th><th>Azaan / Begins</th><th>Jamaat</th></tr></thead>
+        <thead><tr><th style="text-align:left">Prayer</th><th>Azaan</th><th>Jamaat</th></tr></thead>
         <tbody id="prayerBody"></tbody>
       </table>
-      <p class="note">Jamaat times are set by the masjid committee and may change with the season. Azaan times are calculated for Bengaluru.</p>
+      <p class="note">Timings may change with the season. Please follow the masjid notice board for updates.</p>
     </div>
     <div class="jumuah" id="extras"></div>
   </div>
@@ -318,7 +318,7 @@ footer .ar{color:#1f63d6}
 <section class="ram" id="ramadan">
   <div class="wrap">
     <h2>Sehri &amp; Iftar Timings</h2><span class="orn"></span>
-    <p class="sub">For fasting (Ramadan and voluntary fasts). Times for Bengaluru.</p>
+    <p class="sub">For fasting (Ramadan and voluntary fasts).</p>
     <div class="grid two">
       <div class="big"><div class="t">Sehri ends</div><div class="v" id="sehri">—</div><div class="d">Stop eating before Fajr</div></div>
       <div class="big"><div class="t">Iftar</div><div class="v" id="iftar">—</div><div class="d">At Maghrib (sunset)</div></div>
@@ -336,8 +336,8 @@ footer .ar{color:#1f63d6}
 <!-- ISLAMIC MONTHS -->
 <section id="months">
   <div class="wrap">
-    <h2>Islamic Months</h2><span class="orn"></span>
-    <p class="sub">The Hijri calendar and its important days. Dates depend on moon sighting and may differ by a day.</p>
+    <h2>Islamic Month</h2><span class="orn"></span>
+    <p class="sub">Today's Hijri date. Dates depend on moon sighting and may differ by a day.</p>
     <div class="grid months" id="monthGrid"></div>
   </div>
 </section>
@@ -360,16 +360,18 @@ footer .ar{color:#1f63d6}
       <div class="card">
         <h3 style="color:var(--green);margin-bottom:8px">Bank Details</h3>
         <div class="row"><span>Account name</span><b id="bAcc">Jamia Masjid Madiwala</b></div>
-        <div class="row"><span>Bank</span><b id="bBank">Your Bank Name</b></div>
+        <div class="row"><span>Bank</span><b id="bBank">Union Bank of India</b></div>
+        <div class="row"><span>Branch</span><b id="bBranch">Madiwala</b></div>
         <div class="row"><span>Account number</span><b id="bNo">0000 0000 0000</b></div>
         <div class="row"><span>IFSC</span><b id="bIfsc">XXXX0000000</b></div>
         <div class="row"><span>UPI ID</span><b id="bUpi">jamiamasjid@upi</b></div>
-        <div class="btns"><button class="btn gold" onclick="copyUpi()">Copy UPI ID</button></div>
+        <div class="btns"><a class="btn" id="payBtn" href="#">Pay Now</a><button class="btn gold" onclick="copyUpi()">Copy UPI ID</button></div>
       </div>
       <div class="card qr" id="qrCard">
         <div id="qrHolder"></div>
         <b style="color:var(--green)">Scan to donate via UPI</b>
         <span style="font-size:.85rem;color:var(--muted)">Zakat, Sadaqah and general donations accepted</span>
+        <a class="btn" id="payBtn2" href="#">Pay Now</a>
       </div>
     </div>
     <p class="verse">"The example of those who spend their wealth in the way of Allah is like a seed that grows seven ears." (Quran 2:261)</p>
@@ -415,11 +417,18 @@ const CONFIG = {
   address: "Jamia Masjid, Madiwala, Bengaluru, Karnataka 560068",
   mapQuery: "Jamia Masjid Madiwala Bangalore",
 
-  // Jamaat (congregation) times: change these as per your masjid
-  jamaat: { Fajr:"5:15 AM", Dhuhr:"1:15 PM", Asr:"4:30 PM", Maghrib:"5 min after Azaan", Isha:"8:00 PM" },
-  // For countdown, Maghrib jamaat is taken as Azaan + this many minutes
-  maghribGapMin: 5,
-  extras: ["Jumu'ah Khutba: 1:15 PM", "Jumu'ah Namaz: 1:30 PM", "Eid Namaz: announced before Eid"],
+  // Azaan and Jamaat times: edit these as per your masjid (keep the "5:15 AM" format)
+  prayers: {
+    Fajr:    { azan:"5:15 AM",  jamaat:"5:45 AM" },
+    Dhuhr:   { azan:"1:00 PM",  jamaat:"1:30 PM" },
+    Asr:     { azan:"4:30 PM",  jamaat:"4:45 PM" },
+    Maghrib: { azan:"5:54 PM",  jamaat:"5:56 PM" },
+    Isha:    { azan:"8:15 PM",  jamaat:"8:30 PM" }
+  },
+  jumuah: { azan:"12:30 PM", jamaat:"2:00 PM" },     // shown on Fridays in place of Zuhr
+  sehriEnds: "5:15 AM",                              // last time to eat sehri
+  iftar: "5:54 PM",                                  // iftar time (Maghrib azan)
+  extras: ["Jumu'ah Azaan: 12:30 PM", "Jumu'ah Jamaat: 2:00 PM", "Eid Namaz: announced before Eid"],
 
   phone: "+910000000000",       phoneShow: "+91 00000 00000",
   whatsapp: "910000000000",
@@ -428,7 +437,7 @@ const CONFIG = {
 
   upi: "jamiamasjid@upi",
   upiName: "Jamia Masjid Madiwala",
-  bank: { name:"Jamia Masjid Madiwala", bank:"Your Bank Name", no:"0000 0000 0000", ifsc:"XXXX0000000" },
+  bank: { name:"Jamia Masjid Madiwala", bank:"Union Bank of India", branch:"Madiwala", no:"520101029941047", ifsc:"UBIN0912280" },
   // Optional: put your own UPI QR image file name here, e.g. "qr.png". Leave "" to auto-generate.
   qrImage: "",
 
@@ -487,6 +496,9 @@ $("mapFrame").src = "https://maps.google.com/maps?q=" + q + "&output=embed";
 $("bAcc").textContent = CONFIG.bank.name; $("bBank").textContent = CONFIG.bank.bank;
 $("bNo").textContent = CONFIG.bank.no; $("bIfsc").textContent = CONFIG.bank.ifsc;
 $("bUpi").textContent = CONFIG.upi;
+$("bBranch").textContent = CONFIG.bank.branch;
+const payUrl = "upi://pay?pa=" + encodeURIComponent(CONFIG.upi) + "&pn=" + encodeURIComponent(CONFIG.upiName) + "&cu=INR";
+$("payBtn").href = payUrl; $("payBtn2").href = payUrl;
 function copyUpi(){
   const done = () => alert("UPI ID copied: " + CONFIG.upi);
   if(navigator.clipboard){ navigator.clipboard.writeText(CONFIG.upi).then(done,done); } else { done(); }
@@ -514,52 +526,56 @@ function hijriInfo(d){
 const hj = hijriInfo(new Date());
 const greg = new Date().toLocaleDateString("en-IN",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
 $("hijriPill").textContent = hj ? (hj.day + " " + MONTHS[hj.month-1][0] + " " + hj.year + " AH  •  " + greg) : greg;
-$("monthGrid").innerHTML = MONTHS.map((m,i) =>
-  '<div class="card m'+(hj && hj.month===i+1?' cur':'')+'"><span class="num">'+(i+1)+'</span><h3>'+m[0]+'</h3><div class="ar">'+m[1]+'</div><p>'+m[2]+'</p></div>').join("");
+(function(){
+  const g = $("monthGrid"); g.style.display = "block";
+  if(!hj){ g.innerHTML = '<div class="card" style="max-width:520px;margin:0 auto;text-align:center">Hijri date is not available on this device.</div>'; return; }
+  const m = MONTHS[hj.month-1];
+  g.innerHTML = '<div class="card m cur" style="max-width:520px;margin:0 auto;text-align:center;padding:30px 24px 44px">'
+    + '<div class="ar" style="font-size:1.6rem">'+m[1]+'</div>'
+    + '<h3 style="font-size:2.1rem;margin:4px 0">'+m[0]+'</h3>'
+    + '<div style="font-weight:600;color:var(--green2)">'+hj.day+' '+m[0]+' '+hj.year+' AH</div>'
+    + '<p style="margin-top:12px">'+m[2]+'</p></div>';
+})();
 
-/* Prayer times (live from Aladhan, Bengaluru, Hanafi Asr) */
+/* Prayer times (set by the masjid in CONFIG) */
 const ORDER = ["Fajr","Dhuhr","Asr","Maghrib","Isha"];
-const FALLBACK = {Fajr:"05:12",Dhuhr:"12:20",Asr:"15:45",Maghrib:"17:55",Isha:"19:10",Sunrise:"06:20"};
-let T = null;
+const NAMES = {Fajr:"Fajr", Dhuhr:"Zuhr", Asr:"Asr", Maghrib:"Maghrib", Isha:"Isha"};
 
-function to12(t){ const [h,m]=t.split(":").map(Number); return ((h%12)||12)+":"+pad(m)+" "+(h>=12?"PM":"AM"); }
-function toDate(t, add=0){ const [h,m]=t.split(":").map(Number); const d=new Date(); d.setHours(h,m+add,0,0); return d; }
-function jamaatDate(name){
-  if(name==="Maghrib") return toDate(T.Maghrib, CONFIG.maghribGapMin);
-  const m = CONFIG.jamaat[name].match(/(\d+):(\d+)\s*(AM|PM)/i);
-  if(!m) return toDate(T[name]);
-  let h=+m[1]; if(/PM/i.test(m[3]) && h<12) h+=12; if(/AM/i.test(m[3]) && h===12) h=0;
-  const d=new Date(); d.setHours(h,+m[2],0,0); return d;
+function at(str){
+  const m = String(str).match(/(\d+):(\d+)\s*(AM|PM)/i);
+  const d = new Date(); if(!m){ d.setHours(23,59,0,0); return d; }
+  let h = +m[1]; if(/PM/i.test(m[3]) && h < 12) h += 12; if(/AM/i.test(m[3]) && h === 12) h = 0;
+  d.setHours(h, +m[2], 0, 0); return d;
+}
+function timesFor(n){
+  if(n === "Dhuhr" && new Date().getDay() === 5) return {name:"Jumu'ah", azan:CONFIG.jumuah.azan, jamaat:CONFIG.jumuah.jamaat};
+  return {name:NAMES[n], azan:CONFIG.prayers[n].azan, jamaat:CONFIG.prayers[n].jamaat};
 }
 
 function render(){
-  $("prayerBody").innerHTML = ORDER.map(n =>
-    '<tr data-n="'+n+'"><td class="n">'+n+'</td><td>'+to12(T[n])+'</td><td class="j">'+CONFIG.jamaat[n]+'</td></tr>').join("");
-  $("sehri").textContent = to12(T.Fajr);
-  $("iftar").textContent = to12(T.Maghrib);
+  $("prayerBody").innerHTML = ORDER.map(n => {
+    const t = timesFor(n);
+    return '<tr data-n="'+n+'"><td class="n">'+t.name+'</td><td>'+t.azan+'</td><td class="j">'+t.jamaat+'</td></tr>';
+  }).join("");
+  $("sehri").textContent = CONFIG.sehriEnds;
+  $("iftar").textContent = CONFIG.iftar;
   $("todayLine").textContent = "Today, " + greg;
   tick();
 }
 
 function tick(){
-  if(!T) return;
   const now = new Date();
-  let next = null;
-  for(const n of ORDER){ const d = jamaatDate(n); if(d > now){ next = {n,d}; break; } }
-  let label;
-  if(!next){ const d=jamaatDate("Fajr"); d.setDate(d.getDate()+1); next={n:"Fajr",d}; label="Fajr (tomorrow)"; }
-  $("nextName").textContent = label || next.n;
+  let next = null, tomorrow = false;
+  for(const n of ORDER){ const d = at(timesFor(n).jamaat); if(d > now){ next = {n, d}; break; } }
+  if(!next){ const d = at(CONFIG.prayers.Fajr.jamaat); d.setDate(d.getDate()+1); next = {n:"Fajr", d}; tomorrow = true; }
+  $("nextName").textContent = tomorrow ? "Fajr (tomorrow)" : timesFor(next.n).name;
   const diff = Math.max(0, next.d - now);
-  const h = Math.floor(diff/3600000), m = Math.floor(diff%3600000/60000), s = Math.floor(diff%60000/1000);
-  $("nextCd").textContent = "in " + (h? h+"h ":"") + m + "m " + pad(s) + "s";
-  document.querySelectorAll("#prayerBody tr").forEach(r => r.classList.toggle("active", r.dataset.n===next.n && label===undefined));
+  const h = Math.floor(diff/3600000), m = Math.floor(diff%3600000/60000), sec = Math.floor(diff%60000/1000);
+  $("nextCd").textContent = "in " + (h ? h+"h " : "") + m + "m " + pad(sec) + "s";
+  document.querySelectorAll("#prayerBody tr").forEach(r => r.classList.toggle("active", !tomorrow && r.dataset.n === next.n));
 }
+render();
 setInterval(tick, 1000);
-
-fetch("https://api.aladhan.com/v1/timingsByCity?city=Bengaluru&country=India&method=1&school=1")
-  .then(r => r.json())
-  .then(j => { const t=j.data.timings; T={}; Object.keys(FALLBACK).forEach(k => T[k]=t[k].slice(0,5)); render(); })
-  .catch(() => { T = FALLBACK; render(); $("todayLine").textContent += " (approximate, please check masjid notice board)"; });
 
 /* Ramadan section */
 if(CONFIG.ramadanTable.length){
@@ -576,6 +592,8 @@ $("ramNote").textContent = (hj && hj.month===9)
   if(!("IntersectionObserver" in window)) return;
   const io = new IntersectionObserver((es) => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }), {threshold:.08});
   document.querySelectorAll(".card,.big,.nextbox").forEach((el,i) => { el.classList.add("rv"); el.style.transitionDelay = (i%4)*70 + "ms"; io.observe(el); });
+  /* failsafe: if nothing revealed itself, show everything */
+  setTimeout(() => { if(!document.querySelector(".rv.in")) document.querySelectorAll(".rv").forEach(e => e.classList.add("in")); }, 1500);
 })();
 </script>
 </body>
